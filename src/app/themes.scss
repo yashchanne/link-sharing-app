@@ -1,0 +1,22 @@
+$themes: (
+  light: (
+    primaryBackgroundColor: #ffe6e6,
+    primaryTextColor: #333,
+  ),
+  dark: (
+    primaryBackgroundColor: #333,
+    primaryTextColor: #fff,
+  ),
+);
+
+$primaryButtonBackground: #0066cc;
+$buttonTextColor: #fff;
+
+$alwaysPrimaryDark: #333;
+$alwaysPrimaryLight: #ffe6e6;
+
+$alwaysSecondaryDark: #666;
+$alwaysSecondaryLight: #f2f2f2;
+
+$alwaysPrimaryThemeColor: #ff3333;
+$alwaysPrimaryThemeColorDark: #c00;

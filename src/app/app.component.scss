@@ -1,0 +1,115 @@
+@import './themes';
+
+.item1 {
+    grid-area: header;
+}
+
+.item2 {
+    grid-area: main;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-areas: 'header' 'main';
+}
+
+@mixin themify($themes: $themes) {
+    @each $theme, $map in $themes {
+        
+        .theme-#{$theme} & {
+            $theme-map: () !global;
+            @each $key, $submap in $map {
+                $value: map-get(map-get($themes, $theme), '#{$key}');
+                $theme-map: map-merge($theme-map, ($key: $value)) !global;
+            }
+
+            @content;
+            $theme-map: null !global;
+        }
+
+    }
+}
+
+@function themed($key) {
+    @return map-get($theme-map, $key);
+}
+
+.app-container {
+    @include themify($themes) {
+        color: themed('primaryTextColor');
+        background-color: themed('primaryBackgroundColor');
+    }
+
+    .nav-ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        
+        @include themify($themes) {
+            color: themed('primaryTextColor');
+            background-color: themed('primaryBackgroundColor');
+        }
+    }
+    
+    .nav-li {
+        float: left;
+        padding: 20px;
+        height: 100%;
+    }
+    
+    .app-title {
+        a {
+            letter-spacing: 1px;
+            word-spacing: 5px;
+            text-decoration: none;
+            color: $alwaysPrimaryThemeColor;
+        }
+
+        a:hover {
+            color: $alwaysPrimaryThemeColorDark;
+        }
+    }
+
+    .theme-button {
+        float: right;
+        background-color: inherit;
+        color: inherit;
+    }
+
+    .theme-button:hover {
+        background-color: $alwaysPrimaryThemeColor;
+        color: $alwaysPrimaryDark;
+        cursor: pointer;
+    }
+    
+    .login-button {
+        float: right;
+        margin-right: 20px;
+        background-color: inherit;
+        color: inherit;
+    }
+
+    .login-button {
+        a {
+            padding: 20px;
+            text-decoration: none;
+            color: inherit;
+        }
+    }
+
+    .login-button:hover {
+        background-color: $alwaysPrimaryThemeColor;
+        cursor: pointer;
+
+        a {
+            color: $alwaysPrimaryDark;
+        }
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .theme-button {
+        margin-right: 20px;
+    }
+}

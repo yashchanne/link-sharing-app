@@ -1,0 +1,11 @@
+<div class="link-title-div">
+    <a [href]="link.link" target="_blank">{{ link.title | titlecase}}</a>
+</div>
+<div class="link-description-div">
+    {{ link.description }}
+    <div style="margin-top: 20px; letter-spacing: 1px;"><u>CATEGORY</u>: {{ link.category | uppercase }}</div>
+</div>
+<div class="link-actions-div" *ngIf="loggedUser.username!=''">
+    <span class="link-actions-span" (click)="emitEditEvent()">Edit</span>&nbsp;
+    <span class="link-actions-span" (click)="emitDeleteEvent()">Delete</span>
+</div>

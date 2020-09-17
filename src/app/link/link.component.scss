@@ -1,0 +1,44 @@
+@import '../themes';
+
+.link-title-div {
+    background-color: $alwaysPrimaryThemeColor;
+    height: 20%;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    overflow: auto;
+}
+
+.link-title-div {
+    a {
+        text-decoration: none;
+        color: black;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+}
+
+.link-description-div {
+    height: 50%;
+    padding: 10px;
+    overflow: auto;
+}
+
+.link-actions-div {
+    height: 30%;
+    padding: 15px 0 0 10px;
+    
+}
+
+.link-actions-span {
+    padding: 10px;
+    background-color: $alwaysPrimaryThemeColor;
+    color: black;
+}
+
+.link-actions-span:hover {
+    background-color: $alwaysPrimaryThemeColorDark;
+    cursor: pointer;
+}

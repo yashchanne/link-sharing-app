@@ -1,0 +1,16 @@
+<div [ngClass]="appTheme">
+  <div class="grid-container app-container">
+    <div class="item1">
+      <ul class="nav-ul">
+        <li class="nav-li app-title"><a routerLink="/">{{ title | uppercase }}</a></li>
+        <li class="nav-li login-button" style="padding: 20px 0;" *ngIf="loggedUser.username==''"><a routerLink="/login">Login / Signup</a></li>
+        <li class="nav-li login-button" style="padding: 20px;" *ngIf="loggedUser.username!=''" (click)="logout()">Logout</li>
+        <li class="nav-li theme-button" (click)="toggleTheme()">Toggle Theme</li>
+      </ul>
+    </div>
+  
+    <div class="item2">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

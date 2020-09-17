@@ -1,0 +1,22 @@
+<div class="login-container">
+    <div class="login-form-div">
+        <div *ngIf="isLoginIntended; then thenBlock else elseBlock"></div>
+        <ng-template #thenBlock>
+            <form (submit)="validateLogin()">
+                <input type="text" name="username" [(ngModel)]="username" placeholder="Enter username" minlength="4" maxlength="10" required #userInput>
+                <input type="password" name="password" [(ngModel)]="password" placeholder="Enter password" minlength="4" maxlength="10" required #passInput>
+                <button type="submit" class="login-button" [disabled]="!userInput.validity.valid || !passInput.validity.valid">Login</button>
+            </form>
+            <a (click)="toggleIsLoginIntended()" class="option-link">or SignUp instead!</a>
+        </ng-template>
+        <ng-template #elseBlock>
+            <form (submit)="validateSignup()">
+                <input type="text" name="username" [(ngModel)]="username" placeholder="Enter username" minlength="4" maxlength="10" required #userInput>
+                <input type="password" name="password" [(ngModel)]="password" placeholder="Enter password" minlength="4" maxlength="10" required #passInput>
+                <input type="password" name="cpassword" [(ngModel)]="cpassword" placeholder="Confirm password" minlength="4" maxlength="10" required #cpassInput>
+                <button type="submit" class="login-button" [disabled]="!userInput.validity.valid || !passInput.validity.valid || !cpassInput.validity.valid">SignUp</button>
+            </form>
+            <a (click)="toggleIsLoginIntended()" class="option-link">or Login instead!</a>
+        </ng-template>
+    </div>
+</div>

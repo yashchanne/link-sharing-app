@@ -1,0 +1,84 @@
+<div class="home-container">
+    <div class="grid-container">
+        <app-link
+            class="grid-item"
+            *ngFor="let link of links$ | async"
+            [link]="link" [loggedUser]="loggedUser"
+            (deleteEvent)="deleteLink(link.id)"
+            (editEvent)="openEditProductForm(link.id)"
+        >
+        </app-link>
+    </div>
+
+    <div *ngIf="loggedUser.username!=''" class="add-button-div">
+        <button type="button" class="add-button" (click)="openAddProductForm()">Add Product</button>
+    </div>
+</div>
+
+<div class="form-popup" id="add-product-form">
+    <form (submit)="addLink()" class="form-popup-container">
+        <h4 style="margin-top: 10px;">Product Details</h4>
+
+        <input
+            type="text" placeholder="Enter Book Name" name="name"
+            [(ngModel)]="formPopupBookName" #addBookNameInput
+            minlength="3" maxlength="45" required
+        >
+        <input
+            type="text" placeholder="Enter Book Link" name="link"
+            [(ngModel)]="formPopupBookLink" #addBookLinkInput
+            minlength="5" maxlength="100" required
+        >
+        <textarea
+            placeholder="Enter Book Description" name="description"
+            [(ngModel)]="formPopupBookDescription" #addBookDescriptionInput
+            minlength="5" maxlength="300" required
+        ></textarea>
+        <input
+            type="text" placeholder="Enter Book Category" name="category"
+            [(ngModel)]="formPopupBookCategory" #addBookCategoryInput
+            minlength="3" maxlength="20" required
+        >
+    
+        <button
+            type="submit" class="form-popup-action-button"
+            [disabled]="!addBookNameInput.validity.valid || !addBookLinkInput.validity.valid || !addBookDescriptionInput.validity.valid || !addBookCategoryInput.validity.valid"
+        >Add
+        </button>
+        <button type="button" class="form-popup-close-button" (click)="closeAddProductForm()">Close</button>
+    </form>
+</div>
+
+<div class="form-popup" id="edit-product-form">
+    <form (submit)="editLink()" class="form-popup-container">
+        <h4 style="margin-top: 10px;">Edit Details</h4>
+
+        <input
+            type="text" placeholder="Enter Book Name" name="name"
+            [(ngModel)]="formPopupBookName" #editBookNameInput
+            minlength="3" maxlength="45" required
+        >
+        <input
+            type="text" placeholder="Enter Book Link" name="link"
+            [(ngModel)]="formPopupBookLink" #editBookLinkInput
+            minlength="5" maxlength="100" required
+        >
+        <textarea
+            placeholder="Enter Book Description" name="description"
+            [(ngModel)]="formPopupBookDescription" #editBookDescriptionInput
+            minlength="5" maxlength="300" required
+        ></textarea>
+        <input
+            type="text" placeholder="Enter Book Category" name="category"
+            [(ngModel)]="formPopupBookCategory" #editBookCategoryInput
+            minlength="3" maxlength="20" required
+        >
+    
+        <button
+            type="submit" class="form-popup-action-button"
+            [disabled]="!editBookNameInput.validity.valid || !editBookLinkInput.validity.valid || !editBookDescriptionInput.validity.valid || !editBookCategoryInput.validity.valid"
+        >Update
+        </button>
+        <button type="button" class="form-popup-close-button" (click)="closeEditProductForm()">Close</button>
+    </form>
+</div>
